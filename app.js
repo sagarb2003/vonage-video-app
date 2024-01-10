@@ -1,13 +1,17 @@
-const smsRouter = require('./routes/sms')
-const whatsappRouter = require('./routes/whatsapp')
-const voiceRouter = require('./routes/voice')
-const videoRouter = require('./routes/video')
+const smsRouter = require('./routes/sms');
+const whatsappRouter = require('./routes/whatsapp');
+const voiceRouter = require('./routes/voice');
+const videoRouter = require('./routes/video');
 const express = require('express');
-const expressLayouts = require('express-ejs-layouts')
+const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
+const favicon = require('serve-favicon');
+const path = require('path');
 const app = express();
 const port = 3000;
 
+app.use(express.static('public'));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
