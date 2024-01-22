@@ -1,1 +1,3 @@
-# demo-messages_voice_video-node-hack_this_fall
+# Hack This Fall Demo
+
+This is a demo application built in Node JS and using the Vonage Node SDK.

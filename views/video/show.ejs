@@ -12,33 +12,32 @@
   let apiKey = '<%= apiKey %>';
   let sessionId = '<%= sessionId %>';
   let token = '<%= token %>';
-</script>
-<script>
-/* global OT, apiKey, sessionId, token */
 
-// Initialize an OpenTok Session object
-let session = OT.initSession(apiKey, sessionId);
+  /* global OT, apiKey, sessionId, token */
 
-// Initialize a Publisher, and place it into the element with id="publisher"
-let publisher = OT.initPublisher('publisher');
+  // Initialize an OpenTok Session object
+  let session = OT.initSession(apiKey, sessionId);
 
-// Attach event handlers
-session.on({
+  // Initialize a Publisher, and place it into the element with id="publisher"
+  let publisher = OT.initPublisher('publisher');
 
-  // This function runs when session.connect() asynchronously completes
-  sessionConnected: function () {
-    // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
-    // clients)
-    session.publish(publisher);
-  },
+  // Attach event handlers
+  session.on({
 
-  // This function runs when another client publishes a stream (eg. session.publish())
-  streamCreated: function (event) {
-    session.subscribe(event.stream, 'subscribers', { insertMode: 'append' });
-  }
+    // This function runs when session.connect() asynchronously completes
+    sessionConnected: function () {
+      // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
+      // clients)
+      session.publish(publisher);
+    },
 
-});
+    // This function runs when another client publishes a stream (eg. session.publish())
+    streamCreated: function (event) {
+      session.subscribe(event.stream, 'subscribers', { insertMode: 'append' });
+    }
 
-// Connect to the Session using the 'apiKey' of the application and a 'token' for permission
-session.connect(token);
+  });
+
+  // Connect to the Session using the 'apiKey' of the application and a 'token' for permission
+  session.connect(token);
 </script>
