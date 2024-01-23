@@ -1,4 +1,6 @@
 <h2>Send an SMS</h2>
+<p>This <a href="https://developer.vonage.com/en/messages/code-snippets/sms/send-sms" target="_blank">sends an SMS</a> using the <a href="https://developer.vonage.com/en/messages/overview" target="_blank">Vonage Messages API</a>.</p>
+
 <form action="/sms/create" method="post">
   <label for="number">Number: </label>
   <input
@@ -9,3 +11,6 @@
   <textarea id="message" name="message"></textarea>
   <input type="submit" value="Send" />
 </form>
+<p class="notice">Note that there are specific regulations around sending SMS in India, and numbers need to be registered. See <a href="https://api.support.vonage.com/hc/en-us/articles/204017423-India-SMS-Features-and-Restrictions" target="_blank">India SMS Features and Restrictions
+</a> for more information.</p>
+<p class="notice">Note also that the code in the <code>create</code> controller under <code>/controllers/sms.js</code> is that standard code for sending an SMS. For sending SMS in India, you may need to include additonal parameters in the message body such as <code>sms.content_id</code> and/ or <code>sms.entity_id</code>. See the <a href="https://developer.vonage.com/en/api/messages-olympus" target="_blank">Messages API Reference</a> for more information.</p>

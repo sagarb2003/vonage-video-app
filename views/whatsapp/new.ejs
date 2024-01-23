@@ -1,4 +1,6 @@
 <h2>Send a WhatsApp Message</h2>
+<p>This <a href="https://developer.vonage.com/en/messages/code-snippets/whatsapp/send-text" target="_blank">sends an WhatsApp Text Message</a> using the <a href="https://developer.vonage.com/en/messages/overview" target="_blank">Vonage Messages API</a>.</p>
+
 <form action="/whatsapp/create" method="post">
   <label for="number">Number:</label>
   <input
@@ -9,3 +11,5 @@
   <textarea id="message" name="message"></textarea>
   <input type="submit" value="Send" />
 </form>
+
+<p class="notice">Note that this demo app uses the <a href="https://developer.vonage.com/en/messages/concepts/messages-api-sandbox?source=messages">Messages API Sandbox</a> (the <code>create</code> controller in <code>/controllers/whatsapp.js</code> over-rides the default <code>apiHost</code> with the one for the Messages Sandbox). To send a message to your WhatsApp number from the Sandbox, you will need to have allow-listed that number in the <a href="https://dashboard.nexmo.com/messages/sandbox">Sandbox</a> in the Vonage Developer Dshboard.</p>
