@@ -29,5 +29,5 @@ exports.create = (req, res) => {
 		.then(resp => console.log(resp.messageUUID))
 		.catch(err => console.error(err));
 
-	res.redirect('/sms/new');
+	res.redirect('/whatsapp/new');
 }
