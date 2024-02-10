@@ -1,44 +1,86 @@
-<h2>Video Call</h2>
-<article>
-   <div id="publisher"></div>
-</article> 
-<article id="subscribers"></article>
-<article>
-  <h3>Meeting Link:</h3>
-  <p><a href="<%= meetingLink %>"><%= meetingLink %></a></p>
-  <p class="notice">Open this link in a separate device or browser tab for a two-way video call.</p>
-</article>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Video Call</title>
+    <style>
+      /* body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      } */
 
-<script type="text/javascript">
-  let apiKey = '<%= apiKey %>';
-  let sessionId = '<%= sessionId %>';
-  let token = '<%= token %>';
+      h2 {
+        margin-bottom: 10px;
+      }
 
-  /* global OT, apiKey, sessionId, token */
+      article {
+        margin-bottom: 20px;
+      }
 
-  // Initialize an OpenTok Session object
-  let session = OT.initSession(apiKey, sessionId);
+      
 
-  // Initialize a Publisher, and place it into the element with id="publisher"
-  let publisher = OT.initPublisher('publisher');
+      h3 {
+        margin-bottom: 5px;
+      }
 
-  // Attach event handlers
-  session.on({
+      .notice {
+        color: #999;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Video Call</h2>
 
-    // This function runs when session.connect() asynchronously completes
-    sessionConnected: function () {
-      // Publish the publisher we initialzed earlier (this will trigger 'streamCreated' on other
-      // clients)
-      session.publish(publisher);
-    },
+    <article>
+      <div id="publisher"></div>
+    </article>
 
-    // This function runs when another client publishes a stream (eg. session.publish())
-    streamCreated: function (event) {
-      session.subscribe(event.stream, 'subscribers', { insertMode: 'append' });
-    }
+    <article id="subscribers"></article>
 
-  });
+    <article>
+      <h3>Meeting Link:</h3>
+      <p><a href="<%= meetingLink %>"><%= meetingLink %></a></p>
+      <p class="notice">
+        Open this link in a separate device or browser tab for a two-way video
+        call.
+      </p>
+    </article>
 
-  // Connect to the Session using the 'apiKey' of the application and a 'token' for permission
-  session.connect(token);
-</script>
+    <script type="text/javascript">
+      let apiKey = "<%= apiKey %>";
+      let sessionId = "<%= sessionId %>";
+      let token = "<%= token %>";
+
+      // Initialize an OpenTok Session object
+      let session = OT.initSession(apiKey, sessionId);
+
+      // Initialize a Publisher, and place it into the element with id="publisher"
+      let publisher = OT.initPublisher("publisher");
+
+      // Attach event handlers
+      session.on({
+        // This function runs when session.connect() asynchronously completes
+        sessionConnected: function () {
+          // Publish the publisher we initialized earlier (this will trigger 'streamCreated' on other clients)
+          session.publish(publisher);
+        },
+
+        // This function runs when another client publishes a stream (e.g., session.publish())
+        streamCreated: function (event) {
+          session.subscribe(event.stream, "subscribers", {
+            insertMode: "append",
+          });
+        },
+      });
+
+      // Connect to the Session using the 'apiKey' of the application and a 'token' for permission
+      session.connect(token);
+    </script>
+  </body>
+</html>
