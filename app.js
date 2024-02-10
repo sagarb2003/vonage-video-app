@@ -13,6 +13,7 @@ const port = 3000;
 app.use(express.static("public"));
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(expressLayouts);
+pp.set("views", __dirname + "/views");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 
