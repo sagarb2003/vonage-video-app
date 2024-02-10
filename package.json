@@ -2,7 +2,7 @@
   "name": "demo-messages_voice_video-node-hack_this_fall",
   "version": "1.0.0",
   "description": "Demo application for various Vonage communication APIs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
